@@ -8,7 +8,13 @@
         var onUserComplete = function (data) {
             $scope.user = data;
             github.getRepos($scope.user).then(onReposComplete, onError);
+            github.getFollowers($scope.user).then(onFollowersComplete, onError);
         };
+
+        var onFollowersComplete = function (data) {
+            $scope.followers = data;
+            initChartjs();
+        }
 
         var onReposComplete = function (data) {
             $scope.repos = data;

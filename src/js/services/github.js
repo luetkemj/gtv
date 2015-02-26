@@ -12,6 +12,12 @@
             });
         };
 
+        var getFollowers = function (user) {
+            return $http.get(user.followers_url).then(function(response){
+                return response.data;
+            });
+        };
+
         var getRepos = function(user){
             return $http.get(user.repos_url).then(function(response){
                 return response.data;
@@ -32,6 +38,7 @@
 
         return {
             getUser: getUser,
+            getFollowers: getFollowers,
             getRepos: getRepos,
             getRepo: getRepo,
             getContributors: getContributors
