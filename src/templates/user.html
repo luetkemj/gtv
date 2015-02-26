@@ -1,24 +1,27 @@
-<div class="user">
-    <h2>{{user.name}}</h2>
-    {{error}}
-    <img ng-src="{{user.avatar_url}}" alt="{{user.name}}">
+<div ng-show="error" class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
 </div>
 
-<div class="table-sort">
+<hr>
 
+<div class="row">
+    <div class="col-lg-1">   
+        <img ng-src="{{user.avatar_url}}" alt="{{user.name}}" class="img-rounded img-responsive">
+    </div>
+    <div class="col-lg-5">
+        <h2>{{user.login}} <small><a href="{{user.html_url}}" target="_blank">on github</a></small></h2> 
+    </div>
 </div>
 
-
-
-
-
-
+<hr>
 
 <div class="row">
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Repositories</h3>
+                <h3 class="panel-title">Repositories <span class="badge">{{public_repos}}</span></h3>
             </div>
             <div class="panel-body">
                 <table class="table table-striped">
@@ -60,19 +63,78 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Gists <span class="badge">{{public_gists}}</span></h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>                            
+                            Name
+                        </th>
+                        <th>
+                            Comments
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="gist in gists">
+                        <td><a href="{{gist.html_url}}" target="_blank">
+                            <span ng-hide="gist.description">Untitled</span>
+                            {{gist.description}}
+                            </a>
+                        </td>
+                        <td><ng-pluralize count="gist.comments" 
+                                            when="{
+                                                '0':'0 comments',
+                                                '1':'1 comment',
+                                                'other':'{} comments'
+                                                }">
+                            </ng-pluralize>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<div class="row">
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Followers</h3>
             </div>
             <div class="panel-body">
-                <ul>
-                    <li ng-repeat="follower in followers">{{follower.login}}</li>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="follower in followers">
+                        <a href="{{follower.html_url}}" target="_blank">{{follower.login}}</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Following</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="followed in following">
+                        <a href="{{followed.html_url}}" target="_blank">{{followed.login}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -80,5 +142,4 @@
 
 <p class="meta">
     <a href="#/main">Back to Search</a>
-    {{error}}
 </p>

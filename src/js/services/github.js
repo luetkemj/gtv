@@ -6,10 +6,8 @@
         //var auth = '?client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET';
         var auth = simpleAuth.getAuth;
 
-        console.log(auth);
-
-        var getUser = function (username) {
-            return $http.get("https://api.github.com/users/" + username + auth).then(function (response) {
+        var getContributors = function (repo) {
+            return $http.get(repo.contributors_url + auth).then(function (response) {
                 return response.data;
             });
         };
@@ -19,6 +17,18 @@
                 return response.data;
             });
         };
+
+        var getFollowing = function (username) {
+            return $http.get("https://api.github.com/users/" + username + "/following" + auth).then(function(response){
+                return response.data;
+            });
+        }
+
+        var getGists = function (username) {
+            return $http.get("https://api.github.com/users/" + username + "/gists" + auth).then(function(response){
+                return response.data;
+            });
+        }
 
         var getRepos = function(user){
             return $http.get(user.repos_url + auth).then(function(response){
@@ -32,18 +42,20 @@
             });
         };
 
-        var getContributors = function (repo) {
-            return $http.get(repo.contributors_url + auth).then(function (response) {
+        var getUser = function (username) {
+            return $http.get("https://api.github.com/users/" + username + auth).then(function (response) {
                 return response.data;
             });
         };
 
         return {
-            getUser: getUser,
+            getContributors: getContributors,
             getFollowers: getFollowers,
+            getFollowing: getFollowing,
+            getGists: getGists,
             getRepos: getRepos,
             getRepo: getRepo,
-            getContributors: getContributors
+            getUser: getUser
         };
     };
 
