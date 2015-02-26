@@ -13,7 +13,6 @@
 
         var onFollowersComplete = function (data) {
             $scope.followers = data;
-            initChartjs();
         }
 
         var onReposComplete = function (data) {

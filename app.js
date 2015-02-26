@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module("githubViewer", ["ngRoute"]);
+    var app = angular.module("githubViewer", ["ngRoute","ui.bootstrap"]);
 
     app.config(function( $routeProvider ){
         $routeProvider

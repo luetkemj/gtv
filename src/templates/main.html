@@ -1,8 +1,14 @@
-<div>
+<div class="row">
+  <div class="col-lg-6">
 
-    <form action="" name="searchUser" ng-submit="search(username)">
-        <input type="search" required placeholder="Username to find" ng-model="username"/>
-        <input type="submit" value="SEARCH">
+    <form class="form-inline" ng-submit="search(username)">
+      <div class="form-group">
+        <label for="exampleInputName2">Find Github User</label>
+        <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe" ng-model="username">
+      </div>
+
+      <button type="submit" class="btn btn-default">Go!</button>
     </form>
 
-</div>
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
