@@ -1,10 +1,10 @@
 (function () {
 
-    var github = function ($http) {
+    var github = function ($http, simpleAuth) {
 
         //if you exceed your api usage you will need to use basic auth. Set up an application on github and add your client_id and client_secret below like so:
         //var auth = '?client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET';
-        var auth = '';
+        var auth = simpleAuth.getAuth;
 
         var getUser = function (username) {
             return $http.get("https://api.github.com/users/" + username + auth).then(function (response) {
