@@ -1,3 +1,9 @@
+<div ng-show="error" class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+
 <div class="repo">
     <h2>{{repo.name}}</h2>
     {{error}}
@@ -6,15 +12,31 @@
 </div>
 
 
-<!--need to get repo contibuters from github service and add in controller-->
-<ul class="contributors">
-    <li ng-repeat="contributor in contributors">
-       <img ng-src="{{contributor.avatar_url}}" /> <a href="{{contributor.html_url}}" target="_blank">{{contributor.login}}</a>
-        {{contributor.contributions}} contributions.
-    </li>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">Contibutors</div>
+  <div class="panel-body">
 
-<p class="meta">
-    <a href="#/user/{{username}}">Back to {{username}}</a>
-    {{error}}
-</p>
+    <div class="row">
+
+      <div ng-repeat="contributor in contributors" class="col-xs-6 col-md-3">
+        <a href="{{contributor.html_url}}" target="_blank">
+            <div class="thumbnail">
+              <img  ng-src="{{contributor.avatar_url}}" alt="{{contributor.login}}">
+              <div class="caption">
+                <h3>{{contributor.login}}</h3>
+                <ng-pluralize count="contributor.contributions" 
+                            when="{
+                                '0':'0 contributions',
+                                '1':'1 contribution',
+                                'other':'{} contributions'
+                                }">
+                </ng-pluralize>
+              </div>
+            </div>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
