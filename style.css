@@ -1,30 +1,5 @@
 /* Styles go here */
-
-.user{
-  background: lightgray;
-  width: 30%;
-  padding: 20px;
-  border-radius: 20px;
-}
-
-.user img{
-  max-width: 100%;
-  height: auto;
-}
-
-.contributors{
-    list-style-type: none;
-}
-
-.contributors li{
-    height: 50px;
-    background: lightgray;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.contributors li img{
-    max-height: 50px;
-    width: auto;
+.panel-body{
+  max-height: 250px;
+  overflow-y: auto;
 }
