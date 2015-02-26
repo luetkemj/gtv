@@ -6,6 +6,8 @@
         //var auth = '?client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET';
         var auth = simpleAuth.getAuth;
 
+        console.log(auth);
+
         var getUser = function (username) {
             return $http.get("https://api.github.com/users/" + username + auth).then(function (response) {
                 return response.data;
@@ -13,13 +15,13 @@
         };
 
         var getFollowers = function (user) {
-            return $http.get(user.followers_url).then(function(response){
+            return $http.get(user.followers_url + auth).then(function(response){
                 return response.data;
             });
         };
 
         var getRepos = function(user){
-            return $http.get(user.repos_url).then(function(response){
+            return $http.get(user.repos_url + auth).then(function(response){
                 return response.data;
             });
         };
@@ -31,7 +33,7 @@
         };
 
         var getContributors = function (repo) {
-            return $http.get(repo.contributors_url).then(function (response) {
+            return $http.get(repo.contributors_url + auth).then(function (response) {
                 return response.data;
             });
         };
